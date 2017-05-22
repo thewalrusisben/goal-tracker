@@ -9,8 +9,7 @@ class Header extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      open: false,
-      view: 'Complete'
+      open: false
     }
     this.toggleDrawer = this.toggleDrawer.bind(this)
     this.toggleView = this.toggleView.bind(this)
@@ -19,14 +18,12 @@ class Header extends Component {
     this.setState({open: !this.state.open})
   }
 
-  toggleView (status) {
-    const visibility = status.target.value
-    if (visibility === 'complete') {
-      this.setState({view: 'Incomplete'})
+  toggleView (targetView) {
+    if (targetView === 'complete') {
+      this.props.toggleVisbility('complete')
     } else {
-      this.setState({view: 'Complete'})
+      this.props.toggleVisbility('incomplete')
     }
-    this.props.toggleVisbility()
     this.setState({open: false})
   }
   render () {
@@ -37,8 +34,8 @@ class Header extends Component {
         iconElementLeft={<IconButton><NavigationMenu onTouchTap={this.toggleDrawer} /></IconButton>}
       />
       <Drawer docked={false} open={this.state.open} onRequestChange={(open) => this.setState({open})} >
-        <MenuItem onTouchTap={this.toggleView} value="incomplete">Incomplete Today</MenuItem>
-        <MenuItem onTouchTap={this.toggleView} value="complete">Complete Today</MenuItem>
+        <MenuItem onTouchTap={() => this.toggleView('incomplete')} >Incomplete Today</MenuItem>
+        <MenuItem onTouchTap={() => this.toggleView('complete')} >Complete Today</MenuItem>
       </Drawer>
       </div>
     )
