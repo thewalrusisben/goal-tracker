@@ -38,9 +38,9 @@ class App extends Component {
             exact
             path='/'
             component={() => <List
-              visibility={this.state.viewIncomplete}
-              todos={this.state.todos}
-              updateParentTodos={(todos) => this.updateTodos(todos)} 
+                visibility={this.state.viewIncomplete}
+                todos={this.state.todos}
+                updateParentTodos={(todos) => this.updateTodos(todos)} 
               />}
           />
           <Route

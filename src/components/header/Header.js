@@ -15,6 +15,7 @@ class Header extends Component {
     this.toggleDrawer = this.toggleDrawer.bind(this)
     this.toggleView = this.toggleView.bind(this)
   }
+  
   toggleDrawer () {
     this.setState({open: !this.state.open})
   }
