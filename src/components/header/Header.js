@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu'
@@ -34,8 +35,8 @@ class Header extends Component {
         iconElementLeft={<IconButton><NavigationMenu onTouchTap={this.toggleDrawer} /></IconButton>}
       />
       <Drawer docked={false} open={this.state.open} onRequestChange={(open) => this.setState({open})} >
-        <MenuItem onTouchTap={() => this.toggleView('incomplete')} >Incomplete Today</MenuItem>
-        <MenuItem onTouchTap={() => this.toggleView('complete')} >Complete Today</MenuItem>
+        <Link to='/' style={{textDecoration: 'none'}}><MenuItem onTouchTap={() => this.toggleView('incomplete')} >Incomplete Today</MenuItem></Link>
+        <Link to='/' style={{textDecoration: 'none'}}><MenuItem onTouchTap={() => this.toggleView('complete')} >Complete Today</MenuItem></Link>
       </Drawer>
       </div>
     )
