@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { List as UiList, ListItem } from 'material-ui/List'
 import Checkbox from 'material-ui/Checkbox'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
@@ -20,21 +20,25 @@ class List extends Component {
     })
     this.props.updateParentTodos(updatedTodos)
   }
-  
   render () {
     return (
       <div>
         <UiList>
-          {this.props.todos.filter((todo) => {
-            return todo.completeToday !== this.props.visibility  
-          })
-          .map((todo) => {
-            return (
-              <ListItem key={todo.id} leftCheckbox={<Checkbox onClick={this.updateGoal} value={todo.id} checked={todo.completeToday} />}>
-                {todo.goalName}
-              </ListItem>
+          {this.props.todos.filter((todo) => {return todo.completeToday === false}).length > 0 ? (
+            this.props.todos.filter(
+              (todo) => {
+                return todo.completeToday !== this.props.visibility  
+              })
+              .map((todo) => {
+                return (
+                  <ListItem key={todo.id} leftCheckbox={<Checkbox onClick={this.updateGoal} value={todo.id} checked={todo.completeToday} />}>
+                    {todo.goalName}
+                  </ListItem>
+                )
+              }
             )
-          })}
+          ) : (<h3 style={{textAlign: 'center', position: 'relative', marginTop: '20%'}}>Click '+' to Add a Todo.</h3>)
+          }
         </UiList>
         <Link to='/add'>
           <FloatingActionButton secondary={true} style={{position: 'absolute', right: '20px', bottom: '20px'}}>
